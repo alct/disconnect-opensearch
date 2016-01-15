@@ -47,34 +47,209 @@ EOT;
 
 <h2>Add and set Disconnect Search as the default search engine</h2>
 
-<h3>Firefox</h3>
+<div class="js-alert no-js">
+    <h3>Please (temporarily) enable Javascript</h3>
 
-<ol>
-    <li>Click the "+" icon in the search field</li>
-    <li>Click "Add Disconnect Search (${ses}, ${location})"</li>
-    <li>Right-click the Disconnect Search icon</li>
-    <li>Click "Set As Default Search Engine"</li>
-</ol>
+    <p>Some browser vendors do not provide means to add custom search providers other than using a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sidebar/Adding_search_engines_from_Web_pages">specific Javascript API</a>.</p>
 
-<h3>Chrome, Chromium</h3>
+    <h3>However, if you use Firefox (desktop)…</h3>
 
-<ol>
-    <li>In the top right, click the Chrome menu</li>
-    <li>Select "Settings"</li>
-    <li>Go to the "Search" section</li>
-    <li>Click "Manage search engines"</li>
-    <li>Fill out the fields to set up the search engine
-        <ul>
-            <li>Disconnect Search (${ses}, ${location})</li>
-            <li>disconnect.me</li>
-            <li>https://search.disconnect.me/searchTerms/search?ses=${ses}&amp;location=${location}&amp;query=%s</li>
-        </ul>
-    </li>
-    <li>Click "Done"</li>
-    <li>Click "Manage search engines" again</li>
-    <li>Hover over "Disconnect Search (${ses}, ${location})"</li>
-    <li>Click "Make Default"</li>
-</ol>
+    <p>The process is straightforward even without Javascript (Kudos Mozilla!):</p>
+
+    <ol>
+        <li>Click the "+" icon in the search field&nbsp;;</li>
+        <li>Click "Add Disconnect Search (${ses}, ${location})"&nbsp;;</li>
+        <li>Right-click the Disconnect Search icon&nbsp;;</li>
+        <li>Click "Set As Default Search Engine".</li>
+    </ol>
+</div>
+
+<ul class="nav">
+    <li class="firefox active"><a href="#firefox">Firefox</a></li>
+    <li class="firefox-android"><a href="#firefox-android">Firefox (Android)</a></li>
+    <li class="chrome"><a href="#chrome">Chrome/ium</a></li>
+    <li class="ie"><a href="#ie">Internet Explorer</a></li>
+    <li class="others"><a href="#others">Others</a></li>
+</ul>
+
+<div class="instructions firefox active">
+    <h3 id="firefox">Firefox</h3>
+
+    <p>Clicking the "Add Disconnect Search" button below opens a pop-up window, check the "Make this the current search engine" checkbox and then, click "Add".</p>
+
+    <p class="button">
+        <input type="button" value="Add Disconnect Search" class="add-button" />
+    </p>
+</div>
+
+<div class="instructions firefox-android">
+    <h3 id="firefox-android">Firefox (Android)</h3>
+
+    <p>Clicking the "Add Disconnect Search" button below opens a pop-up window, click "Add".</p>
+
+    <ol>
+        <li class="button"><input type="button" value="Add Disconnect Search" class="add-button" /></li>
+        <li>In the top right, click the Firefox menu&nbsp;;</li>
+        <li>Click "Settings"&nbsp;;</li>
+        <li>Click "Customize"&nbsp;;</li>
+        <li>Click "Search"&nbsp;;</li>
+        <li>Click "Disconnect Search (${ses}, ${location})"&nbsp;;</li>
+        <li>Click "Set as default".</li>
+    </ol>
+</div>
+
+<div class="instructions chrome">
+    <h3 id="chrome">Chrome/ium</h3>
+
+    <p>Clicking the "Add Disconnect Search" button below opens a pop-up window, click "Add".</p>
+
+    <ol>
+        <li class="button"><input type="button" value="Add Disconnect Search" class="add-button" /></li>
+        <li>In the top right, click the Chrome menu&nbsp;;</li>
+        <li>Click "Settings"&nbsp;;</li>
+        <li>Click "Manage search engines…"&nbsp;;</li>
+        <li>Hover over "Disconnect Search (${ses}, ${location})"&nbsp;;</li>
+        <li>Click "Make Default"&nbsp;;</li>
+        <li>Click "Done".</li>
+    </ol>
+</div>
+
+<div class="instructions ie">
+    <h3 id="ie">Internet Explorer</h3>
+
+    <p>Clicking the "Add Disconnect Search" button below opens a pop-up window, check the "Make this my default search provider" checkbox and then, click "Ok".</p>
+
+    <p class="button">
+        <input type="button" value="Add Disconnect Search" class="add-button" />
+    </p>
+</div>
+
+<div class="instructions others">
+    <h3 id="others">Others</h3>
+
+    <p>If your browser is not listed or not supported, one of the following methods might work for you.</p>
+
+    <h4>AddSearchProvider API</h4>
+
+    <p>Give the following button a click.</p>
+
+    <p class="button">
+        <input type="button" value="Add Disconnect Search" class="add-button" />
+    </p>
+
+    <h4>Autodiscovery</h4>
+
+    <p>Your browser might automatically suggest to add the Disconnect Search provider upon visiting the page. Pay attention to the search bar (if there is any).</p>
+
+    <h4>URL template</h4>
+
+    <p>If your browser allows for manual editing of search engine providers, this is what the URL template looks like:</p>
+
+    <pre><code>https://search.disconnect.me/searchTerms/search?ses=${ses}&amp;location=${location}&amp;query={searchTerms}</code></pre>
+
+    <p>Note that <code>{searchTerms}</code> is just a placeholder, it might be something else, such as <code>%s</code>.</p>
+
+    <h4>OpenSearch description document</h4>
+
+    <p>If, by any chance, your browser allows for manual adding of OpenSearch description documents, here is the current one: <a href="?opensearch&ses=${ses}&location=${location}">Disconnect Search (${ses}, ${location})</a>.</p>
+
+    <h4>Eventually…</h4>
+
+    <p>If none of the above worked for you, it might be time to change for a <a href="https://mozilla.org/en-US/firefox/new/">modern and free (as in "freedom") web browser</a>.</p>
+</div>
+
+<script>
+var d = document;
+var w = window;
+var html = d.documentElement;
+
+var anchor = location.hash.substring(1);
+
+var opensearch = d.querySelectorAll('link[rel="search"]')[0].href;
+
+var tabs = d.querySelectorAll('.nav li');
+var instructions = d.querySelectorAll('.instructions');
+
+var buttons = d.getElementsByClassName('add-button');
+
+function toggleJS() {
+
+    html.classList.remove('no-js');
+    html.classList.add('js');
+}
+
+function toggleTab(tab) {
+
+    // activate the proper tab
+
+    [].forEach.call(tabs, function(el) {
+
+        el.classList.remove('active');
+    });
+
+    tab.classList.add('active');
+
+    // activate the related instructions
+
+    [].forEach.call(instructions, function(el) {
+
+        if (el.classList.contains(tab.classList[0])) {
+
+            el.classList.add('active');
+
+        } else {
+
+            el.classList.remove('active');
+        }
+    });
+}
+
+function addSP(xml) {
+
+    try {
+
+        w.external.AddSearchProvider(xml);
+
+    } catch (e) {
+
+        alert('You browser is not supported.');
+        location.replace(location.href.split("#")[0] + '#others');
+    }
+}
+
+d.addEventListener('DOMContentLoaded', function() {
+
+    toggleJS();
+
+    if (anchor) {
+
+        toggleTab(d.querySelectorAll('.nav .' + anchor)[0]);
+    }
+});
+
+w.addEventListener('hashchange', function() {
+
+    var anchor = location.hash.substring(1);
+
+    toggleTab(d.querySelectorAll('.nav .' + anchor)[0]);
+});
+
+[].forEach.call(tabs, function(el) {
+
+    el.addEventListener('click', function(){
+
+        toggleTab(el);
+    });
+});
+
+[].forEach.call(buttons, function(el) {
+
+    el.addEventListener('click', function() {
+
+        addSP(opensearch);
+    });
+});
+</script>
 EOT;
 
     } else {
@@ -147,7 +322,7 @@ EOT;
 
 echo <<<EOT
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" media="screen" href="css/main.css" />
