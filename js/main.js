@@ -51,7 +51,7 @@ function addSP(xml) {
 
     } catch (e) {
 
-        alert('You browser is not supported.');
+        alert('Your browser is not supported.');
         location.replace(location.href.split("#")[0] + '#others');
     }
 }
