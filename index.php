@@ -244,7 +244,7 @@ echo <<<EOT
 
 <body>
 <div class="wrapper">
-<h1><a href="/"><strong>Disconnect</strong> OpenSearch</a></h1>
+<h1><a href="./"><strong>Disconnect</strong> OpenSearch</a></h1>
 
 ${content}
 
