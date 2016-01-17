@@ -105,9 +105,8 @@ EOT;
 
     <ol>
         <li class="button"><input type="button" value="Add Disconnect Search" class="add-button" /></li>
-        <li>In the top right, click the Chrome menu&nbsp;;</li>
-        <li>Click "Settings"&nbsp;;</li>
-        <li>Click "Manage search engines…"&nbsp;;</li>
+        <li>Right-click the address bar&nbsp;;</li>
+        <li>Click "Edit search engines…"&nbsp;;</li>
         <li>Hover over "Disconnect Search (${ses}, ${location})"&nbsp;;</li>
         <li>Click "Make Default"&nbsp;;</li>
         <li>Click "Done".</li>
