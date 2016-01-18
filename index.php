@@ -19,7 +19,12 @@ if (in_array($_GET['ses'], $ses_array)
 
 if (isset($_GET['opensearch'])) {
 
-    if (! $valid) exit('Invalid values.');
+    if (! $valid) {
+
+        http_response_code(400);
+
+        exit('Invalid values.');
+    }
 
     header('Content-Type: application/xml');
 
